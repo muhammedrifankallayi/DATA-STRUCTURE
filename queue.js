@@ -71,10 +71,29 @@ display(){
 }
 
 remove(){
-   this.front = this.front.next
+   let val =this.front
+   this.front = this.front.next 
+   return val.value
 }
 
-
+removeval(val) {
+   let arr = [];
+   let curr = this.front;
+   
+   while (curr !== null && curr.value !== val) {
+     arr.push(this.remove());
+     curr = this.front;
+   }
+   
+   if (curr !== null && curr.value === val) {
+     this.remove()
+   }
+   
+   for (let i = 0; i < arr.length; i++) {
+     this.push(arr[i]);
+   }
+ }
+ 
 
 }
 
@@ -82,5 +101,5 @@ const ql = new QueListing()
 ql.push(8)
 ql.push(18)
 ql.push(28)
-ql.remove()
+ql.removeval(18)
 ql.display()

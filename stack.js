@@ -111,6 +111,16 @@ let curr = this.top
 
 this.top=curr.next
 this.size--
+return curr
+}
+
+reverse(){
+let ar=[]
+
+
+
+
+
 }
 
 
