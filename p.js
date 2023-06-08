@@ -115,7 +115,196 @@ middleDel(){
 }
 
 const lis = new List()
-lis.convertArr([1,2,3,5,66,8,7])
 
-lis.middleDel()
 
+
+
+
+
+
+
+
+
+//  binary search tree
+
+class BST{
+    constructor(value){
+        this.value=value
+        this.right=null
+        this.left=null
+    }
+}
+class Tree{
+    constructor(){
+        this.root=null
+        
+    }
+
+    isEmpty(){
+        return this.root === null
+    }
+
+    insert(value){
+        if(this.root===null){
+            const node = new BST(value)
+this.root = node
+        }else{
+            this.insertValue(this.root,value)
+        }
+    }
+
+    insertValue(root,value){
+        const node = new BST(value)
+if(value>root.value){
+    if(root.right===null){
+        root.right= node
+    }else{
+        this.insertValue(root.right,value)
+    }
+}else{
+    if(root.left===null){
+        root.left= node
+    }else{
+        this.insertValue(root.left,value)
+    }
+}
+    }
+
+    display(){
+        this.root.left ?   console.log(this.root.left.value) : console.log(null);
+        return 
+    }
+
+search(root,value){
+    if(root.value===value){
+        return true
+    }else if(root.value<value){
+if (root.right){
+    return this.search(root.right,value)
+}
+return null
+
+       
+    }else{
+        if (root.left){
+            return this.search(root.left,value)
+        }
+        return null
+    }
+}
+preorder(root){
+  
+if(root){
+    console.log(root.value);
+    this.preorder(root.right)
+    this.preorder(root.left)
+}
+     
+}
+inorder(root){
+   
+  if(root){
+    this.inorder(root.right)
+    console.log(root.value);
+    this.inorder(root.left)
+  }
+}
+postorder(root){
+    if(root){
+        this.postorder(root.right)
+        this.postorder(root.left)
+        console.log(root.value);
+    }
+}
+
+
+delete(value){
+this.deleteNode(this.root,value)
+}
+deleteNode(root,value){
+    if(root===null){
+        return null
+    }else if(root.value<value){
+        root.right = this.deleteNode(root.right,value)
+        return root
+    }else if(root.value>value){
+        root.left = this.deleteNode(root.left,value)
+        return root
+    }else{
+// value position found thats way here
+
+if(root.right==null){
+    return root.left
+}else if(root.left===null){
+    return root.right
+}else{
+    let mini = this.min(root.right)
+    root.value=mini
+    root.right= this.deleteNode(root.right,mini)
+    return root
+}
+
+
+
+    }
+}
+min(root){
+    if(!root.left){
+       return root.value
+    }else{
+        return this.min(root.left)
+    }
+
+}
+isBST(root) {
+    let prev = null;
+  
+    function inOrderTraversal(node) {
+      if (node === null) {
+        return true;
+      }
+  
+      if (!inOrderTraversal(node.left)) {
+        return false;
+      }
+  
+      if (prev !== null && node.value <= prev) {
+        return false;
+      }
+  
+      prev = node.value;
+  
+      return inOrderTraversal(node.right);
+    }
+  
+    return inOrderTraversal(root);
+  }
+  
+// Output: true
+  
+}
+
+
+const tree = new Tree()
+
+tree.insert(10)
+tree.insert(15)
+tree.insert(6)
+tree.insert(8)
+tree.insert(9)
+tree.insert(7)
+tree.insert(3)
+tree.insert(33)
+
+// uncomment to see the working of the code 
+
+// console.log(tree.isEmpty()); 
+// tree.display()
+
+// console.log("is exist? = "+tree.search(tree.root,9));
+// tree.preorder(tree.root)
+// tree.delete(6)
+// tree.preorder(tree.root)
+// console.log(tree.isBST(tree.root)); 
+
+// tree.inorder(tree.root)
