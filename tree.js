@@ -178,6 +178,103 @@ const bst = new Tree()
 
 //  bst.PreOrder(bst.root)
 // bst.inOrder(bst.root)
-console.log(bst.max(bst.root)+'-----Maxx');
-bst.delete(7)
-bst.PreOrder(bst.root)
+// console.log(bst.max(bst.root)+'-----Maxx');
+// bst.delete(7)
+// bst.PreOrder(bst.root)
+
+
+
+
+
+//    heap..
+
+class Heap{
+  constructor(){
+    this.Heap=[]
+  }
+
+Parent(child){
+  return Math.floor((child-1)/2)
+}
+RightChild(parent){
+  return parent*2+2
+}
+LeftChild(parent){
+  return parent*2+1
+}
+upshift(){
+var index = this.Heap.length-1
+var parent = this.Parent(index)
+while(this.Heap[index]>this.Heap[parent]){
+  this.swap(parent,index)
+  index=parent
+  parent= this.Parent(index)
+}
+
+return
+
+}
+insert(value){
+  this.Heap.push(value)
+  this.upshift()
+}
+
+swap(i,j){
+  let temp = this.Heap[i]
+ this.Heap[i] = this.Heap[j]
+ this.Heap[j] = temp
+}
+
+downshift(inx){
+  var maxIndex=inx
+  var rightChild = this.RightChild(inx)
+  var LeftChild = this.LeftChild(inx)
+if(this.Heap[maxIndex]<this.Heap[LeftChild]) {
+  this.swap(maxIndex,LeftChild)
+    maxIndex = LeftChild
+  }else if(this.Heap[maxIndex]<this.Heap[rightChild]){
+    this.swap(maxIndex,rightChild)
+    maxIndex = rightChild
+  }else{
+  
+    return 
+  }
+  this.downshift(maxIndex)
+}
+delete(){
+  let root  = this.Heap[0]
+  this.Heap[0] = this.Heap.pop()
+  this.downshift(0)
+  return root
+}
+
+display(){
+  console.log(this.Heap);
+}
+add(val){
+  this.Heap.unshift(val)
+}
+sort(){
+  let j=[]
+  for(let i = this.Heap.length-1 ; i>=0 ; i--){
+    
+      this.swap(0,i)
+j.unshift(this.Heap.pop())
+this.downshift(0)
+  
+  }
+  [...this.Heap] = [...j]
+  j=[]
+}
+}
+
+
+
+const heap = new Heap()
+heap.insert(7)
+heap.insert(8)
+heap.insert(4)
+heap.insert(78)
+heap.insert(9)
+heap.sort()
+heap.display()

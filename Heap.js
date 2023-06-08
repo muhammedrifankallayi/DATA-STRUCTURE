@@ -63,7 +63,9 @@ class MaxHeap {
     isEmpty() {
       return this.heap.length === 0;
     }
-  
+  add(val){
+    this.heap.unshift(val)
+  }
     print() {
       console.log(this.heap);
     }
@@ -71,14 +73,19 @@ class MaxHeap {
   
   // Usage example
   const heap = new MaxHeap();
-  heap.insert(10);
-  heap.insert(5);
-  heap.insert(20);
-  heap.insert(3);
+  heap.insert(7);
+  heap.insert(8);
+  heap.insert(4);
+  heap.insert(78);
+  heap.insert(9);
+  heap.delete()
+ 
+//   heap.insert(45);
+//   heap.insert(39);
+
   heap.print(); // [20, 10, 5, 3]
   
-  heap.delete();
-  heap.print(); // [10, 3, 5]
+ 
   const numbers = [1, 2, 5, 11, 7, 9];
 
 const hasEvenNumber = numbers.some(function(element) {

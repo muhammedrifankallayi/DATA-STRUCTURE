@@ -308,3 +308,6 @@ tree.insert(33)
 // console.log(tree.isBST(tree.root)); 
 
 // tree.inorder(tree.root)
+
+
+
