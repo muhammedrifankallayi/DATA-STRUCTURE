@@ -70,14 +70,13 @@ class Graph{
                     queue.push(neighbor);
                 }
             }
-        }
-    }
+}}
     removeVertax(vertax){
         if(!this.adjacencyList[vertax]){
             return
         }
         for(let adjecentVertax of this.adjacencyList[vertax]){
-            console.log(adjecentVertax+' evertacil ull edej pokkunnu')
+            console.log(adjecentVertax+'evertacil ull edej pokkunnu')
             this.removeEdge(vertax,adjecentVertax)
         }
         delete this.adjacencyList[vertax]
@@ -98,7 +97,8 @@ graph.addEdge('C','B')
 // graph.addEdge('B','D')
 // graph.removeEdge('B','C')
 // graph.removeEdge('A','B')
-// graph.removeVertax('B')
+graph.removeVertax('A')
 // graph.dfs('B')
 graph.dfs('A')
+// graph.bfs('b')
 // graph.display()
