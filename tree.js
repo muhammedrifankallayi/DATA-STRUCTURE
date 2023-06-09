@@ -271,10 +271,11 @@ this.downshift(0)
 
 
 const heap = new Heap()
-heap.insert(7)
-heap.insert(8)
-heap.insert(4)
 heap.insert(78)
+heap.insert(11)
 heap.insert(9)
-heap.sort()
+heap.insert(65)
+heap.insert(8)
+heap.insert(100)
+
 heap.display()
