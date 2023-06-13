@@ -42,37 +42,126 @@ preorder(root){
         this.preorder(root.right)
     }
 }
-isValidBST(root) {
-    return this.validateNode(root, -Infinity, Infinity);
+
+//    BINARY SEARCH TREE VALIDATION
+
+isValidBST(){
+    return this.validnode(this.root,-Infinity,Infinity)
+}
+validnode(root,min,max){
+    if(root===null){
+        return true
+    }
+
+    if(root.value<=min || root.value>=max){
+        return false
+    }
+
+    const right = this.validnode(root.right,root.value,max)
+    const left = this.validnode(root.left,min,root.value)
+    return right&&left
+}
+
+//   REMOVE A NODE VALUE FROM TREE
+
+
+Remove(value){
+    this.RemoveNode(this.root,value)
+}
+RemoveNode(root,value){
+if(root.value>value){
+root.left = this.RemoveNode(root.left,value)
+return root 
+}else if(root.value<value){
+ root.right =  this.RemoveNode(root.right,value)
+ return root 
+}else{
+  if(root.right===null&&root.left===null){
+    return null
+  }
+  if(root.right===null){
+    return root.left
+  }
+  
+  if(root.left===null){
+    return root.right
+  }
+  
+
+  let small = this.min(root.right)
+  root.value = small
+  root.right = this.RemoveNode(root.right,small)
+
+ 
+}
+
+}
+min(root){
+   if(root.left===null){
+       return root.value
+   }else{
+    this.min(root.left)
+   }
+}
+
+//  CHECKING THE TREE IS BALANCED OR NOT
+
+isBalanced(root){
+  if(root.right===null&&root.left===null){
+    return true
+  }
+  if(root.right===null&&root.left||root.left===null&&root.right){
+    return false
   }
 
-  validateNode(node, min, max) {
+const right = this.isBalanced(root.right) 
+const left = this.isBalanced(root.left)
+return right&&left
+
+}
+
+// FINDING THE DEPTH OF THE TREE
+
+getDepth(node) {
     if (node === null) {
-      return true;
+      return 0;
     }
     
-    if (node.value <= min ||  max <= node.value) {
-      return false;
-    }
+    const leftDepth = this.getDepth(node.left);
+    const rightDepth = this.getDepth(node.right);
     
-    const leftValid = this.validateNode(node.left, min, node.value);
-    const rightValid = this.validateNode(node.right, node.value, max);
-    
-    return leftValid && rightValid;
+    return Math.max(leftDepth, rightDepth) + 1;
   }
 
+// INVERTING THE TREE
+
+inevert(root){
+    if(root===null){
+        return null
+    }
+
+let temp = root.left
+root.left = root.right
+root.right = temp 
+
+this.revert(root.left)
+this.revert(root.right)
+
+return root
+
+
+}
 
 
 }
 
 const t = new bst()
+t.Add(20)
+t.Add(10)
+t.Add(30)
 t.Add(5)
-t.Add(6)
-t.Add(4)
-t.Add(8)
-t.Add(1)
-t.Add(2)
-t.Add(9)
+t.Add(11)
+t.Add(40)
+// t.Add()
+t.inrevert(t.root)
 t.preorder(t.root)
-console.log(t.isValidBST(t.root));
-console.log(Infinity);

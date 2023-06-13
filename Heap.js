@@ -1,95 +1,104 @@
-class MaxHeap {
-    constructor() {
-      this.heap = [];
-    }
-  
-    insert(value) {
-      this.heap.push(value);
-      this.upshift(this.heap.length - 1);
-    }
-  
-    delete() {
-      if (this.isEmpty()) {
-        return null;
-      }
-      const root = this.heap[0];
-      const lastElement = this.heap.pop();
-      if (!this.isEmpty()) {
-        this.heap[0] = lastElement;
-        this.downshift(0);
-      }
-      return root;
-    }
-  
-    upshift(index) {
-      const parentIndex = Math.floor((index - 1) / 2);
-      if (index > 0 && this.heap[index] > this.heap[parentIndex]) {
-        let temp=this.heap[index]
-        this.heap[index]= this.heap[parentIndex]
-        this.heap[parentIndex]= temp
-        
-        this.upshift(parentIndex);
-      }
-    }
-  
-    downshift(index) {
-      const leftChildIndex = 2 * index + 1;
-      const rightChildIndex = 2 * index + 2;
-      let maxIndex = index;
-  
-      if (
-        leftChildIndex < this.heap.length &&
-        this.heap[leftChildIndex] > this.heap[maxIndex]
-      ) {
-        maxIndex = leftChildIndex;
-      }
-  
-      if (
-        rightChildIndex < this.heap.length &&
-        this.heap[rightChildIndex] > this.heap[maxIndex]
-      ) {
-        maxIndex = rightChildIndex;
-      }
-  
-      if (index !== maxIndex) {
-        let temp = this.heap[index]
-        this.heap[index] = this.heap[maxIndex]
-        this.heap[maxIndex] = temp
-      
-        this.downshift(maxIndex);
-      }
-    }
-  
-    isEmpty() {
-      return this.heap.length === 0;
-    }
-  add(val){
-    this.heap.unshift(val)
+class Heap{
+  constructor(){
+    this.items=[]
   }
-    print() {
-      console.log(this.heap);
-    }
+Insert(value){
+  this.items.push(value)
+  this.Shiftup(this.items.length-1)
+
+}
+dispalay(){
+  console.log(this.items);
+}
+
+// BUILDING HEAP FROM BOTTOM TO TOP
+
+Shiftup(n){
+var parent = this.Parent(n)
+if(this.items[parent]<this.items[n]){
+this.swap(parent,n)
+this.Shiftup(parent)
+}
+}
+
+// BUILDING HEAP FROM TOP TO BOTTON
+
+
+Shiftdown(n){
+ const right  = this.RightChild(n)
+ const left  = this.LeftChild(n)
+
+ var large = (this.items[right]>this.items[left])?right:left
+ if(this.items[n]<this.items[large]){
+  this.swap(n,large)
+  this.Shiftdown(large)
+ }
+
+}
+
+// DELETING FROM THE TOP OF THE HEAP AND USING SHIFT-DOWN TO ARRANGE THE HEAP
+
+Delete(){
+  this.items[0] = this.items.pop()
+  this.Shiftdown(0)
+}
+
+// TWO ARRAY MERGING WITH HEAP 
+
+BuildHeap(Array,Array2){
+  this.items = Array
+  for (let i = Math.floor(Array.length / 2) - 1; i >= 0; i--) {
+    this.Shiftdown(i);
   }
+  for(let i = 0 ;i<Array2.length; i++){
+    this.items.push(Array2[i])
+    this.Shiftup(this.items.length-1)
+  }
+}
+
+// TO FIND DEPTH OF THE HEAP TREE
+
+Depth(index){
   
-  // Usage example
-  const heap = new MaxHeap();
-  heap.insert(7);
-  heap.insert(8);
-  heap.insert(4);
-  heap.insert(78);
-  heap.insert(9);
-  heap.delete()
- 
-//   heap.insert(45);
-//   heap.insert(39);
+  if(index>=this.items.length || this.items[index]===null){
+    return 0
+  }
 
-  heap.print(); // [20, 10, 5, 3]
-  
- 
-  const numbers = [1, 2, 5, 11, 7, 9];
+  let right = this.RightChild(index)
+  let left  = this.LeftChild(index)
 
-const hasEvenNumber = numbers.some(function(element) {
-  return element % 2 === 0;
-});
+  const depth1 =   this.Depth(right)
+   const depth2 =  this.Depth(left)
 
-console.log(hasEvenNumber); // Output: true
+   return Math.max(depth1,depth2)+1
+
+
+}
+
+
+//  TOOLS 
+
+Parent(child){
+  return Math.floor((child-1)/2)
+}
+RightChild(parent){
+   return parent*2+2
+}
+LeftChild(parent){
+  return parent*2+1
+}
+swap(i,j){
+  var temp = this.items[i]
+  this.items[i]=this.items[j]
+  this.items[j]=temp
+}
+
+}
+const h = new Heap()
+
+
+const a = [1,2,3,4,5]
+const b = [6,7,8,9,10]
+
+h.BuildHeap(a,b)
+h.dispalay()
