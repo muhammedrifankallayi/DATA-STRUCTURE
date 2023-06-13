@@ -360,11 +360,41 @@ if(!this.adList[vertax]){
 }
 
 const graph = new Graph()
-graph.addVertex('X')
-graph.addEdges('a','b')
-graph.addEdges('X','a')
-graph.display()
-graph.removeEdges('X','a')
-graph.display()
+// graph.addVertex('X')
+// graph.addEdges('a','b')
+// graph.addEdges('X','a')
+// graph.display()
+// graph.removeEdges('X','a')
+// graph.display()
+
+class Trie{
+    constructor(){
+        this.children={}
+        this.end=false
+    }
+}
+
+class tries{
+    constructor(){
+        this.root = new Trie()
+    }
+
+    prefix(word){
+        for(let i=0;i<word.length;i++){
+
+        }
+    }
+    populatePrifix(size,word){
+        let curr = this.root
+for(let i=0 ; i<=size;i++){
+    let char = word[i]
+    if(!curr.children[char]){
+        curr.children[char]= new Trie()
+    }
+    curr = curr.children[char]
+}
+this.end= true
+    }
+}
 
 

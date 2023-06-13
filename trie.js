@@ -2,51 +2,51 @@
 
 // prefix
 
-class Node{
-    constructor(){
-        this.childern={}
-        this.end=false
-    }
-  }
-  class Trie{
-    constructor(){
-        this.root=new Node()
-    }
-    prifix(word){
-        for(let i=0;i<=word.length-1;i++){
-            this.populatePrifix(i,word)
-        }
-    }
-    populatePrifix(length,word){
-        let current=this.root
-        for(let i=0;i<=length;i++){
-            let char=word[i]
-            if(!current.childern[char]){
-                current.childern[char]=new Node()
-            }
-           current=current.childern[char]
-           console.log(current.childern);
-        }
-        current.end=true
-    }
-    contain(word){
-        let current=this.root
-        for(let i=0;i<word.length;i++){
-            let char=word[i]
-            if(!current.childern[char]){
-                return false
-            }
-            current=current.childern[char]
-        }
-       return current.end
-    }    
-  }
-  const re=new Trie()
-  re.prifix('risvan')
-  re.prifix('sifaan')
+// class Node{
+//     constructor(){
+//         this.childern={}
+//         this.end=false
+//     }
+//   }
+//   class Trie{
+//     constructor(){
+//         this.root=new Node()
+//     }
+//     prifix(word){
+//         for(let i=0;i<=word.length-1;i++){
+//             this.populatePrifix(i,word)
+//         }
+//     }
+//     populatePrifix(length,word){
+//         let current=this.root
+//         for(let i=0;i<=length;i++){
+//             let char=word[i]
+//             if(!current.childern[char]){
+//                 current.childern[char]=new Node()
+//             }
+//            current=current.childern[char]
+//            console.log(current.childern);
+//         }
+//         current.end=true
+//     }
+//     contain(word){
+//         let current=this.root
+//         for(let i=0;i<word.length;i++){
+//             let char=word[i]
+//             if(!current.childern[char]){
+//                 return false
+//             }
+//             current=current.childern[char]
+//         }
+//        return current.end
+//     }    
+//   }
+//   const re=new Trie()
+//   re.prifix('risvan')
+//   re.prifix('sifaan')
 
 
-  // sufixx
+//   // sufixx
 
   class Node{
     constructor(){
@@ -98,13 +98,32 @@ class Trie{
             }
             current=current.childern[char]
         }
-        return true
+       
     }
+    // returnull(prefix){
+    //     let current=this.root
+    //     let arrays=[]
+    //     for(let i=0;i<prefix.length;i++){
+    //         let char=prefix[i]
+    //         if(!current.childern[char]){
+    //             return 'hai'
+    //         }else{
+               
+    //             arrays.push(node.childern)
+    //         }
+    //         current=current.childern[char]
+    //     }
+
+    //     console.log(arrays);
+        
+    // }
 }
 const tey=new Trie()
 tey.trie('manna')
-console.log(tey.contains('ma'))
-console.log(tey.startsWith('ma'))
+// console.log(tey.contains('ma'))
+// console.log(tey.startsWith('ma'))
+
+console.log(tey.returnull('ma'))
 
 
 
