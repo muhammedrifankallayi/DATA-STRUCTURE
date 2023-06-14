@@ -39,8 +39,10 @@ Shiftdown(n){
 // DELETING FROM THE TOP OF THE HEAP AND USING SHIFT-DOWN TO ARRANGE THE HEAP
 
 Delete(){
+  const val =this.items[0]
   this.items[0] = this.items.pop()
   this.Shiftdown(0)
+  return val
 }
 
 // TWO ARRAY MERGING WITH HEAP 
@@ -60,7 +62,7 @@ BuildHeap(Array,Array2){
 
 Depth(index){
   
-  if(index>=this.items.length || this.items[index]===null){
+  if(index>=this.items.length || this.items[index]===undefined){
     return 0
   }
 
@@ -74,6 +76,20 @@ Depth(index){
 
 
 }
+//HEAP SORT 
+
+heapsort(){
+  // this.buildheap(array);
+  let array2 = []
+  let length = this.items.length
+  for(let i=0;i<length;i++){
+      array2.push(this.Delete());
+  }
+  console.log(array2);
+}
+
+
+
 
 
 //  TOOLS 
@@ -102,3 +118,5 @@ const b = [6,7,8,9,10]
 
 h.BuildHeap(a,b)
 h.dispalay()
+
+h.heapsort()
