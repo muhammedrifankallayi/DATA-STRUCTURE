@@ -41,10 +41,10 @@ class Node{
        return current.end
     }    
   }
-  const re=new Trie()
-  re.prifix('risvan')
-  re.prifix('sifaan')
-   console.log(re.contain('sif')); 
+//   const re=new Trie()
+//   re.prifix('risvan')
+//   re.prifix('sifaan')
+//    console.log(re.contain('sif')); 
 
 //   // sufixx
 
@@ -126,7 +126,17 @@ class Node{
 // console.log(tey.contains('manna'))
 
 
+var isPalindrome = function(x) {
+const str = x+""
+const num = str.split("").reverse().join("")
+console.log(num);
+if(str===num){
+return true
+}
+return false
+};
 
+console.log(isPalindrome(101));
 
 
 
