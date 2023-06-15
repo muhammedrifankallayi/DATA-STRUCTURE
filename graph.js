@@ -125,29 +125,53 @@ console.log(val);
           }
         }
       }
+      isCyclicUtil(vertex, visited, parent) {
+        visited[vertex] = true;
+    
+        for (const neighbor of this.adjacencyList[vertex]) {
+          if (!visited[neighbor]) {
+            if (this.isCyclicUtil(neighbor, visited, vertex)) {
+              return true;
+            }
+          } else if (neighbor !== parent) {
+            return true;
+          }
+        }
+    
+        return false;
+      }
+    
+      // Function to check for cycles in the graph
+      isCyclic(startVertex) {
+        const visited = {};
+    
+        for (const vertex in this.adjacencyList) {
+          visited[vertex] = false;
+        }
+    
+        if (this.isCyclicUtil(startVertex, visited, null)) {
+          return true;
+        }
+    
+        return false;
+      }
+
+     
 }
 const graph=new Graph()
-graph.addVertex('A')
-graph.addVertex('B')
-graph.addEdge('C','B')
-graph.addEdge('F','A')
-graph.addEdge('B','A')
-// graph.addVertex("G")
-// graph.removeVertax('B')
-// graph.addEdge('C','D')
-// graph.addEdge('B','D')
-// graph.addEdge('C','D')
-// graph.addEdge('B','D')
-// graph.removeEdge('B','C')
-// graph.removeEdge('A','B')
-// graph.removeVertax('A')
+
+graph.addEdge('A','B')
+graph.addEdge('B','H')
+graph.addEdge('A','C')
+// graph.addEdge('B','A')
+graph.addVertex("H")
+
 graph.display()
 
 console.log(graph.dfs('A'));
 
-// graph.display()
-// graph.oo("B")
-graph.fdfs("A")
+
+
 // class hydra{
 //     dsf(){
 //         var visited={}
@@ -156,3 +180,4 @@ graph.fdfs("A")
 
 //     }
 // }
+console.log(graph.isCyclic("A"));
