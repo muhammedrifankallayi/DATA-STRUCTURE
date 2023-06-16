@@ -133,7 +133,7 @@ getDepth(node) {
     return Math.max(leftDepth, rightDepth) + 1;
   }
 
-// INVERTING THE TREE
+//  INVERTING  THE  TREE 
 
 inevert(root){
     if(root===null){

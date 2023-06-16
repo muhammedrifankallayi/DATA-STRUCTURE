@@ -83,9 +83,9 @@ heapsort(){
   let array2 = []
   let length = this.items.length
   for(let i=0;i<length;i++){
-      array2.push(this.Delete());
+      array2.unshift(this.Delete());
   }
-  console.log(array2);
+  console.log(array2+"sorted");
 }
 
 
@@ -115,6 +115,8 @@ const h = new Heap()
 
 const a = [1,2,3,4,5]
 const b = [6,7,8,9,10]
+
+
 
 h.BuildHeap(a,b)
 h.dispalay()
