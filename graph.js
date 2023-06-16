@@ -59,13 +59,14 @@ arr.push(i)
           let curr = stack.pop();
 val+=` ${curr} -->`
           
-          for (let neighbor in this.adjacencyList) {
-            if (visited[neighbor] == null) {
+          for (let neighbor of this.adjacencyList[curr]) {
+            if (visited[neighbor] !==true )  {
               visited[neighbor] = true;
               stack.push(neighbor);
             }
           }
         }
+        console.log(this.adjacencyList);
         return val
       }
 
@@ -79,11 +80,11 @@ val+=` ${curr} -->`
         queue.push(startVertex);
 
         while (queue.length) {
-            const curr = queue.shift();
+            var curr = queue.shift();
             val+=`-->${curr} `
 
-            for (const neighbor in this.adjacencyList) {
-                if (visited[neighbor]==null) {
+            for (const neighbor of this.adjacencyList[curr]) {
+                if (visited[neighbor]!==true) {
                     visited[neighbor] = true;
                     queue.push(neighbor);
                    
@@ -115,7 +116,7 @@ console.log(val);
         }
     }
     fdfs(node, visited = new Set()) {
-        console.log(node);
+        console.log(`${node}-->`);
         visited.add(node);
       
         const edges = this.adjacencyList[node];
@@ -166,9 +167,9 @@ graph.addEdge('A','C')
 // graph.addEdge('B','A')
 graph.addVertex("H")
 
-graph.display()
+// graph.display()
 
-console.log(graph.dfs('A'));
+ console.log(graph.bfs('A'));
 
 
 
@@ -180,4 +181,4 @@ console.log(graph.dfs('A'));
 
 //     }
 // }
-console.log(graph.isCyclic("A"));
+// console.log(graph.isCyclic("A"));

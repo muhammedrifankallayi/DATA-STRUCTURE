@@ -46,7 +46,7 @@ preorder(root){
 //    BINARY SEARCH TREE VALIDATION
 
 isValidBST(){
-    return this.validnode(this.root,-Infinity,Infinity)
+    return this.validnode(this.root,this.root.left,this.root.right)
 }
 validnode(root,min,max){
     if(root===null){
@@ -144,15 +144,13 @@ let temp = root.left
 root.left = root.right
 root.right = temp 
 
-this.revert(root.left)
-this.revert(root.right)
+this.inevert(root.left)
+this.inevert(root.right)
 
 return root
 
 
 }
-
-
 }
 
 const t = new bst()
@@ -162,6 +160,6 @@ t.Add(30)
 t.Add(5)
 t.Add(11)
 t.Add(40)
-// t.Add()
-t.inrevert(t.root)
+t.Add(1000)
 t.preorder(t.root)
+console.log(t.isValidBST());

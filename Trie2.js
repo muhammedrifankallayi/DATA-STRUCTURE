@@ -55,9 +55,7 @@ let curr = this.root
       
 getfull(word,node){
     
-  let curr = node
-  
- 
+  let curr = node 
   for(let char in curr.children){
     curr = curr.children[char]
    return this.getfull(word+char,curr)
