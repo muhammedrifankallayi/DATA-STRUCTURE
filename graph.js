@@ -89,9 +89,7 @@ val+=` ${curr} -->`
                     queue.push(neighbor);
                    
                 }
-              
-            }
-            
+               }    
 }
 console.log(val);
 }
@@ -126,10 +124,15 @@ console.log(val);
           }
         }
       }
+
+      //  CHECKING IN THE GRAPH CYCLE EXIST
+
+
       isCyclicUtil(vertex, visited, parent) {
         visited[vertex] = true;
     
         for (const neighbor of this.adjacencyList[vertex]) {
+            // console.log(neighbor);
           if (!visited[neighbor]) {
             if (this.isCyclicUtil(neighbor, visited, vertex)) {
               return true;
@@ -147,6 +150,7 @@ console.log(val);
         const visited = {};
     
         for (const vertex in this.adjacencyList) {
+            console.log(vertex);
           visited[vertex] = false;
         }
     
@@ -162,14 +166,25 @@ console.log(val);
 const graph=new Graph()
 
 graph.addEdge('A','B')
-graph.addEdge('B','H')
-graph.addEdge('A','C')
+graph.addEdge('B','C')
+graph.addEdge('C','A')
 // graph.addEdge('B','A')
 graph.addVertex("H")
 
 // graph.display()
 
- console.log(graph.bfs('A'));
+ console.log(graph.isCyclic("A"));
+
+
+
+//   SPANNING TREE 
+
+
+//   Its a sub graph of undirected connected graph 
+
+
+
+
 
 
 

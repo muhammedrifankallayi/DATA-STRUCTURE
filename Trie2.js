@@ -78,6 +78,34 @@ findLongestCommonPrefix() {
   }
 
 
+  deleteRecursive(node, word, index) {
+    if (index === word.length) {
+      if (!node.end) {
+        return false;
+      }
+      node.end = false;
+      return Object.keys(node.children).length === 0;
+    }
+
+    const char = word[index];
+    if (!node.children[char]) {
+      return false;
+    }
+
+    const shouldDeleteCurrentNode = this.deleteRecursive(
+      node.children[char],
+      word,
+      index + 1
+    );
+
+    if (shouldDeleteCurrentNode) {
+      delete node.children[char];
+      return Object.keys(node.children).length === 0;
+    }
+
+    return false;
+  }
+
   }
 
   
@@ -89,5 +117,6 @@ findLongestCommonPrefix() {
   t.insert("AHLia")
 
   console.log(t.contains('ja')); 
-  console.log(t.contains('AHA'));
+  t.deleteRecursive(t.root,"AHLia",0)
+  console.log(t.contains('AHLia'));
   console.log(t.findLongestCommonPrefix());

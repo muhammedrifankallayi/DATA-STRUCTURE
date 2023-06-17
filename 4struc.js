@@ -163,3 +163,15 @@ return word
 const trie = new Trie()
 trie.addString("hello")
 console.log(trie.contain("he"));
+let num = 5;
+let num1= 5
+console.log(++num);   // Output: 5
+console.log(num1++);
+
+console.log(num1+"L");     // Output: 6
+
+let arr = [1,2,3,4,5]
+
+num = arr.slice(0,2)
+console.log(arr);
+console.log(num);
