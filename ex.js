@@ -200,7 +200,7 @@ let arr = [5,6,3,22,4,9,1,2]
 // d.preorder(d.head)
 
 
-let array = [4,5,9,1,3,8,13]
+let array = [2,4,6,7,8,12,14,15,22,78,90]
 
 // const h = array.map((val,ind)=>{
 //  console.log(val);
@@ -254,7 +254,19 @@ class List{
         curr = curr.next
       }
     }
-    
+
+    reverse(){
+        let curr = this.head
+        let prev = null
+        while(curr!==null){
+         let NewNode = curr.next
+         curr.next = prev
+         prev = curr
+         curr = NewNode
+        }
+        this.head = prev
+    }
+
 }
 
 const obj = new List()
@@ -266,6 +278,149 @@ obj.append(5)
 obj.append(6)
 obj.append(7)
 obj.append(8)
+obj.reverse()
 obj.dispaly()
-console.log(obj.peek()+` peek`);
-console.log(obj.getSize());
+// console.log(obj.peek()+` peek`);
+// console.log(obj.getSize());
+
+class DNode{
+    constructor(value){
+         this.value = value
+         this.next = null
+         this.prev = null
+    }
+}
+
+class DList{
+    constructor(){
+        this.head = null
+        this.tail = null
+        this.size = 0
+    }
+ append(value){
+     const NewNode = new DNode(value)
+     if(this.head===null){
+        this.head = NewNode
+        this.tail = NewNode
+     }else{
+        NewNode.prev = this.tail
+        this.tail.next = NewNode
+        this.tail  = NewNode
+     }
+ }
+
+ dispaly(){
+    let curr = this.head
+    while(curr!==null){
+        console.log(curr.value);
+        curr = curr.next
+    }
+ }
+ reverse(){
+    let curr = this.tail
+    while(curr!==null){
+        console.log(curr.value);
+        curr = curr.prev
+    }
+ }
+
+}
+
+const obj2 = new DList()
+// obj2.append(10)
+// obj2.append(12)
+// obj2.append(13)
+// obj2.append(15)
+// obj2.append(11)
+// obj2.append(19)
+// obj2.append(100)
+// obj2.append(17)
+// obj2.append(18)
+// obj2.dispaly()
+// obj2.reverse()
+
+// function Binary(arr, f, l, target) {
+//     if (f > l) {
+//       return "Not found";
+//     }
+  
+//     const mid = Math.floor((l + f) / 2);
+//     if (arr[mid] === target) {
+//       return arr[mid] + " value found";
+//     } else if (arr[mid] > target) {
+//       return Binary(arr, f, mid - 1, target);
+//     } else if (arr[mid] < target) {
+//       return Binary(arr, mid + 1, l, target);
+//     }
+//   }
+  
+//   function execute(arr, t) {
+//     return Binary(arr, 0, arr.length - 1, t);
+//   }
+  
+
+// console.log(execute(array,222));
+
+
+
+//   stack ......//
+
+class Stack{
+    constructor(){
+        this.items = []
+    }
+
+add(value){
+  this.items.push(value)
+}
+isEmpty(){
+    return this.items.length===0
+}
+peek(){
+    if(this.isEmpty()){
+     return "empty stack"
+    }
+    return this.items[this.items.length-1]
+}
+
+size(){
+    return this.items.length
+}
+
+dispaly(){
+    for(let i = this.items.length-1;i>=0;i--){
+        console.log(this.items[i]);
+    }
+}
+delete(val){
+    var num  = this.items.pop()
+    var arr = []
+  while(val!==num && this.items.length!==0){
+  arr.push(num)
+  num = this.items.pop()
+  }
+  if(this.isEmpty()){
+    console.log("this value Not found ");
+    return
+  }
+  while(arr.length>=1){
+    this.add(arr.pop())
+  }
+  
+}
+
+
+}
+
+const s = new Stack()
+s.add(1)
+s.add(2)
+s.add(3)
+s.add(4)
+s.add(5)
+s.add(6)
+s.add(7)
+s.add(8)
+console.log("start");
+s.delete(5)
+s.dispaly()
