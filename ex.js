@@ -200,11 +200,72 @@ let arr = [5,6,3,22,4,9,1,2]
 // d.preorder(d.head)
 
 
-let array = [4,5,9,1,3,7,13]
+let array = [4,5,9,1,3,8,13]
 
-const dup=[]=array
+// const h = array.map((val,ind)=>{
+//  console.log(val);
+// })
+// console.log(h);
 
-dup[0]=10
+class Node{
+    constructor(value){
+       this.value = value
+       this.next = null
+    }
+}
 
-console.log("array"+array);
-console.log("a"+dup);
+class List{
+    constructor(){
+        this.head = null
+        this.size = 0
+    }
+
+    getSize(){
+        return this.size
+    }
+    isEmpty(){
+        return this.size===0
+    }
+    peek(){
+        return this.head.value
+    }
+
+    append(value){
+        const node = new Node(value)
+        if(this.head===null){
+            this.head = node
+            this.size++
+        }else{
+            let curr = this.head
+            while(curr.next!==null){
+                curr = curr.next
+            }
+
+            curr.next = node
+            this.size++
+
+        }
+    }
+
+    dispaly(){
+      let  curr = this.head
+      while(curr!==null){
+        console.log(curr.value);
+        curr = curr.next
+      }
+    }
+    
+}
+
+const obj = new List()
+obj.append(1)
+obj.append(2)
+obj.append(3)
+obj.append(4)
+obj.append(5)
+obj.append(6)
+obj.append(7)
+obj.append(8)
+obj.dispaly()
+console.log(obj.peek()+` peek`);
+console.log(obj.getSize());

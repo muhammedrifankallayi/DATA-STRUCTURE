@@ -38,7 +38,6 @@ let curr= this.head
 
 
 prepend(value){
-
     const node = new Node(value)
 
     if(this.isEmpty()){
@@ -48,7 +47,6 @@ prepend(value){
        this.head=node
     }
     this.size++
-
 }
 
 print(){
