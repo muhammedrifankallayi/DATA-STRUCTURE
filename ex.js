@@ -424,3 +424,81 @@ s.add(8)
 console.log("start");
 s.delete(5)
 s.dispaly()
+
+
+class Heap{
+
+constructor(){
+    this.heap = []
+}
+add(val){
+    this.heap.push(val)
+    this.shiftup(this.heap.length-1)
+}
+shiftup(index){
+var parent = this.parent(index)
+if(this.heap[parent]<this.heap[index]){
+this.swap(parent,index)
+this.shiftup(parent)
+}
+}
+
+
+shiftdown(index){
+ var rchild = this.Rchild(index) 
+ var lchild = this.Lchild(index)
+ var large =  this.heap[rchild]>this.heap[lchild]?rchild:lchild
+ if(this.heap[large]>this.heap[index]){
+    this.swap(large,index)
+    this.shiftdown(large)
+ }
+  
+}
+
+
+Rchild(parent){
+    return Math.floor((parent*2)+2)
+}
+Lchild(parent){
+    return Math.floor((parent*2)+1)
+}
+
+parent(child){
+    return Math.floor((child-1)/2)
+
+}
+
+swap(i,j){
+    let temp = this.heap[i]
+    this.heap[i] = this.heap[j]
+    this.heap[j] = temp
+}
+dispaly(){
+    console.log(this.heap);
+}
+depth(inx){
+ if(inx===this.heap.length-1|| this.heap[inx]===undefined){
+    return 0
+ }
+
+ let rchild = this.Rchild(inx)
+ let lchild = this.Lchild(inx)
+
+ return Math.max(this.depth(rchild),this.depth(lchild))+1
+
+}
+
+
+}
+
+const h = new Heap()
+h.add(10)
+h.add(40)
+h.add(100)
+h.add(9)
+h.add(8)
+h.add(7)
+h.add(50)
+
+h.dispaly()
+console.log(h.depth(0)+`  depth `);
