@@ -61,3 +61,5 @@ These are just a few examples of how heaps are applied in various computer scien
 6. Task Processing: In multi-threaded applications, a queue is used to distribute tasks among threads, ensuring that tasks are executed in the order they are received.
 
 Both stacks and queues have important applications in computer science and are crucial in various algorithms and system designs. Understanding their properties and efficient implementations is essential for writing efficient and well-structured code.
+
+

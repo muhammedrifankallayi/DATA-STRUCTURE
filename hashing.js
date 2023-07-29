@@ -36,6 +36,8 @@ class HashTable {
       for (let i = 0; i < key.length; i++) {
         hash += key.charCodeAt(i);
       }
+      console.log(hash);
+    
       return hash % this.size;
     }
   
@@ -81,8 +83,8 @@ class HashTable {
   }
 
   
-  const sh = new HashTable()
+  const sh = new HashTable(10)
   sh.set('name','rifan')
   sh.set(9,18)
   sh.set('mane','rash')
- console.log( sh.get('mane'));
+ console.log( sh.get('name'));

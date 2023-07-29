@@ -365,140 +365,154 @@ const obj2 = new DList()
 
 //   stack ......//
 
-class Stack{
-    constructor(){
-        this.items = []
-    }
+// class Stack{
+//     constructor(){
+//         this.items = []
+//     }
 
-add(value){
-  this.items.push(value)
-}
-isEmpty(){
-    return this.items.length===0
-}
-peek(){
-    if(this.isEmpty()){
-     return "empty stack"
-    }
-    return this.items[this.items.length-1]
-}
+// add(value){
+//   this.items.push(value)
+// }
+// isEmpty(){
+//     return this.items.length===0
+// }
+// peek(){
+//     if(this.isEmpty()){
+//      return "empty stack"
+//     }
+//     return this.items[this.items.length-1]
+// }
 
-size(){
-    return this.items.length
-}
+// size(){
+//     return this.items.length
+// }
 
-dispaly(){
-    for(let i = this.items.length-1;i>=0;i--){
-        console.log(this.items[i]);
-    }
-}
-delete(val){
-    var num  = this.items.pop()
-    var arr = []
-  while(val!==num && this.items.length!==0){
-  arr.push(num)
-  num = this.items.pop()
-  }
-  if(this.isEmpty()){
-    console.log("this value Not found ");
-    return
-  }
-  while(arr.length>=1){
-    this.add(arr.pop())
-  }
+// dispaly(){
+//     for(let i = this.items.length-1;i>=0;i--){
+//         console.log(this.items[i]);
+//     }
+// }
+// delete(val){
+//     var num  = this.items.pop()
+//     var arr = []
+//   while(val!==num && this.items.length!==0){
+//   arr.push(num)
+//   num = this.items.pop()
+//   }
+//   if(this.isEmpty()){
+//     console.log("this value Not found ");
+//     return
+//   }
+//   while(arr.length>=1){
+//     this.add(arr.pop())
+//   }
   
-}
+// }
 
 
-}
+// }
 
-const s = new Stack()
-s.add(1)
-s.add(2)
-s.add(3)
-s.add(4)
-s.add(5)
-s.add(6)
-s.add(7)
-s.add(8)
-console.log("start");
-s.delete(5)
-s.dispaly()
-
-
-class Heap{
-
-constructor(){
-    this.heap = []
-}
-add(val){
-    this.heap.push(val)
-    this.shiftup(this.heap.length-1)
-}
-shiftup(index){
-var parent = this.parent(index)
-if(this.heap[parent]<this.heap[index]){
-this.swap(parent,index)
-this.shiftup(parent)
-}
-}
+// const s = new Stack()
+// s.add(1)
+// s.add(2)
+// s.add(3)
+// s.add(4)
+// s.add(5)
+// s.add(6)
+// s.add(7)
+// s.add(8)
+// console.log("start");
+// s.delete(5)
+// s.dispaly()
 
 
-shiftdown(index){
- var rchild = this.Rchild(index) 
- var lchild = this.Lchild(index)
- var large =  this.heap[rchild]>this.heap[lchild]?rchild:lchild
- if(this.heap[large]>this.heap[index]){
-    this.swap(large,index)
-    this.shiftdown(large)
- }
+// class Heap{
+
+// constructor(){
+//     this.heap = []
+// }
+// add(val){
+//     this.heap.push(val)
+//     this.shiftup(this.heap.length-1)
+// }
+// shiftup(index){
+// var parent = this.parent(index)
+// if(this.heap[parent]<this.heap[index]){
+// this.swap(parent,index)
+// this.shiftup(parent)
+// }
+// }
+
+
+// shiftdown(index){
+//  var rchild = this.Rchild(index) 
+//  var lchild = this.Lchild(index)
+//  var large =  this.heap[rchild]>this.heap[lchild]?rchild:lchild
+//  if(this.heap[large]>this.heap[index]){
+//     this.swap(large,index)
+//     this.shiftdown(large)
+//  }
   
+// }
+
+
+// Rchild(parent){
+//     return Math.floor((parent*2)+2)
+// }
+// Lchild(parent){
+//     return Math.floor((parent*2)+1)
+// }
+
+// parent(child){
+//     return Math.floor((child-1)/2)
+
+// }
+
+// swap(i,j){
+//     let temp = this.heap[i]
+//     this.heap[i] = this.heap[j]
+//     this.heap[j] = temp
+// }
+// dispaly(){
+//     console.log(this.heap);
+// }
+// depth(inx){
+//  if(inx===this.heap.length-1|| this.heap[inx]===undefined){
+//     return 0
+//  }
+
+//  let rchild = this.Rchild(inx)
+//  let lchild = this.Lchild(inx)
+
+//  return Math.max(this.depth(rchild),this.depth(lchild))+1
+
+// }
+
+
+// }
+
+// const h = new Heap()
+// h.add(10)
+// h.add(40)
+// h.add(100)
+// h.add(9)
+// h.add(8)
+// h.add(7)
+// h.add(50)
+
+// h.dispaly()
+// console.log(h.depth(0)+`  depth `);
+
+
+const objs = {
+  name:"rifan",
+  greet:function(arg,arg2){
+   console.log(`hello ${this.name} and  your age is ${arg} or ${arg2}`);
+  }
 }
 
-
-Rchild(parent){
-    return Math.floor((parent*2)+2)
-}
-Lchild(parent){
-    return Math.floor((parent*2)+1)
+const objx={
+    name:"messi"
 }
 
-parent(child){
-    return Math.floor((child-1)/2)
-
-}
-
-swap(i,j){
-    let temp = this.heap[i]
-    this.heap[i] = this.heap[j]
-    this.heap[j] = temp
-}
-dispaly(){
-    console.log(this.heap);
-}
-depth(inx){
- if(inx===this.heap.length-1|| this.heap[inx]===undefined){
-    return 0
- }
-
- let rchild = this.Rchild(inx)
- let lchild = this.Lchild(inx)
-
- return Math.max(this.depth(rchild),this.depth(lchild))+1
-
-}
-
-
-}
-
-const h = new Heap()
-h.add(10)
-h.add(40)
-h.add(100)
-h.add(9)
-h.add(8)
-h.add(7)
-h.add(50)
-
-h.dispaly()
-console.log(h.depth(0)+`  depth `);
+objs.greet.apply(objx,[67,90])
